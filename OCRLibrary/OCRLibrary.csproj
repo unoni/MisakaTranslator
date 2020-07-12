@@ -61,8 +61,8 @@
     <Compile Include="TesseractOCR.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json">
-      <Version>12.0.3</Version>
+    <PackageReference Include="System.Text.Json">
+      <Version>4.7.2</Version>
     </PackageReference>
     <PackageReference Include="Tesseract">
       <Version>3.3.0</Version>

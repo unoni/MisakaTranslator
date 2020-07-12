@@ -1,8 +1,8 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.IO;
 using System.Text;
 using System.Web;
+using System.Text.Json;
 
 namespace TranslatorLibrary
 {
@@ -11,7 +11,7 @@ namespace TranslatorLibrary
         private string errorInfo;//错误信息
         public string appId;//腾讯翻译君API APPID
         public string appKey;//腾讯翻译君API 密钥
-        
+
         public string GetLastError()
         {
             return errorInfo;
@@ -24,7 +24,7 @@ namespace TranslatorLibrary
                 errorInfo = "Param Missing";
                 return null;
             }
-            
+
 
             // 原文
             string q = sourceText;
@@ -62,7 +62,7 @@ namespace TranslatorLibrary
                 return null;
             }
 
-            TencentTransOutInfo oinfo = JsonConvert.DeserializeObject<TencentTransOutInfo>(retString);
+            TencentTransOutInfo oinfo = JsonSerializer.Deserialize<TencentTransOutInfo>(retString);
 
             if (oinfo.ret == "0")
             {

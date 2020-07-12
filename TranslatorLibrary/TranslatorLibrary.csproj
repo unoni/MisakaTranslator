@@ -31,8 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json">
-      <Version>12.0.3</Version>
+    <PackageReference Include="System.Text.Json">
+      <Version>4.7.2</Version>
     </PackageReference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />

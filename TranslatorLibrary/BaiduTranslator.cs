@@ -1,9 +1,9 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Web;
+using System.Text.Json;
 
 namespace TranslatorLibrary
 {
@@ -14,14 +14,14 @@ namespace TranslatorLibrary
         public string appId;//百度翻译API 的APP ID
         public string secretKey;//百度翻译API 的密钥
         private string errorInfo;//错误信息
-        
+
         public string Translate(string sourceText, string desLang, string srcLang)
         {
             if (sourceText == "" || desLang == "" || srcLang == "") {
                 errorInfo = "Param Missing";
                 return null;
             }
-            
+
             if (desLang == "kr")
                 desLang = "kor";
             if (srcLang == "kr")
@@ -30,7 +30,7 @@ namespace TranslatorLibrary
                 desLang = "fra";
             if (srcLang == "fr")
                 srcLang = "fra";
-            
+
             // 原文
             string q = sourceText;
 
@@ -65,7 +65,7 @@ namespace TranslatorLibrary
                 return null;
             }
 
-            BaiduTransOutInfo oinfo = JsonConvert.DeserializeObject<BaiduTransOutInfo>(retString);
+            BaiduTransOutInfo oinfo = JsonSerializer.Deserialize<BaiduTransOutInfo>(retString);
 
             if (oinfo.error_code == null || oinfo.error_code == "52000")
             {
@@ -84,7 +84,7 @@ namespace TranslatorLibrary
                 errorInfo = "ErrorID:" + oinfo.error_code;
                 return null;
             }
-            
+
         }
 
         public void TranslatorInit(string param1, string param2)
@@ -92,8 +92,8 @@ namespace TranslatorLibrary
             appId = param1;
             secretKey = param2;
         }
-        
-        
+
+
         public string GetLastError()
         {
             return errorInfo;
