@@ -16,15 +16,7 @@ namespace ArtificialTransHelperLibrary
             if (!Directory.Exists(Environment.CurrentDirectory + "\\ArtificialTranslation"))
                 Directory.CreateDirectory(Environment.CurrentDirectory + "\\ArtificialTranslation");
 
-
-            if (File.Exists(Environment.CurrentDirectory + "\\ArtificialTranslation\\MisakaAT_" + gameName + ".sqlite") == false)
-            {
-                CreateNewNounTransDB(gameName);
-            }
-            else
-            {
-                sqlite = new SQLHelper(Environment.CurrentDirectory + "\\ArtificialTranslation\\MisakaAT_" + gameName + ".sqlite");
-            }
+            sqlite = new SQLHelper(Environment.CurrentDirectory + "\\ArtificialTranslation\\MisakaAT_" + gameName + ".sqlite");
         }
 
         /// <summary>
@@ -42,7 +34,7 @@ namespace ArtificialTransHelperLibrary
 
             string sql =
                 $"SELECT * FROM artificialtrans WHERE source = '{source}';";
-            
+
             List<List<string>> ret = sqlite.ExecuteReader(sql, 4);
 
             if (ret.Count > 0) {
@@ -86,7 +78,6 @@ namespace ArtificialTransHelperLibrary
         /// <param name="gameName"></param>
         private void CreateNewNounTransDB(string gameName)
         {
-            SQLHelper.CreateNewDatabase(Environment.CurrentDirectory + "\\ArtificialTranslation\\MisakaAT_" + gameName + ".sqlite");
             sqlite = new SQLHelper(Environment.CurrentDirectory + "\\ArtificialTranslation\\MisakaAT_" + gameName + ".sqlite");
             sqlite.ExecuteSql("CREATE TABLE artificialtrans(id INTEGER PRIMARY KEY AUTOINCREMENT,source TEXT,machineTrans TEXT,userTrans TEXT);");
         }
@@ -122,7 +113,7 @@ namespace ArtificialTransHelperLibrary
             catch (Exception) {
                 return false;
             }
-            
+
             return true;
         }
     }

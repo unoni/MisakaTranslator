@@ -83,7 +83,6 @@ namespace SQLHelperLibrary
         /// </summary>
         public static bool CreateNewGameList()
         {
-            SQLHelper.CreateNewDatabase(Environment.CurrentDirectory + "\\MisakaGameLibrary.sqlite");
             var sqlHelper = new SQLHelper();
             var id = sqlHelper.ExecuteSql("CREATE TABLE game_library(gameid INTEGER PRIMARY KEY AUTOINCREMENT,gamename TEXT,gamefilepath TEXT,transmode INTEGER,src_lang TEXT,dst_lang TEXT,repair_func TEXT,repair_param_a TEXT,repair_param_b TEXT,hookcode TEXT,isMultiHook TEXT,isx64 TEXT,hookcode_custom TEXT);");
             if (id == -1)
@@ -158,7 +157,7 @@ namespace SQLHelperLibrary
                 MessageBox.Show($"数据库访问时发生错误，错误代码:\n{sqlHelper.GetLastError()}", "数据库错误");
                 return null;
             }
-            
+
             if (ls.Count == 0)
             {
                 return null;
@@ -173,7 +172,7 @@ namespace SQLHelperLibrary
                 if (gameI[4] == "" || gameI[5] == "" || gameI[6] == "" || gameI[9] == "" || gameI[10] == "" || gameI[11] == "")
                 {
                     //没有完整走完导航的游戏，这时就不需要显示这个库
-                    continue;   
+                    continue;
                 }
 
                 gameInfo.GameID = int.Parse(gameI[0]);

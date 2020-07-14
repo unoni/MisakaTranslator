@@ -93,7 +93,7 @@ namespace TransOptimizationLibrary
                 return false;
             }
         }
-        
+
         /// <summary>
         /// (未实现)替换通过Mecab分词得到的名词
         /// </summary>
@@ -103,13 +103,12 @@ namespace TransOptimizationLibrary
             return text;
 
         }
-        
+
         /// <summary>
         /// 新建一个名词翻译数据库（一个游戏一个库）
         /// </summary>
         /// <param name="gameName"></param>
         private void CreateNewNounTransDB(string gameName) {
-            SQLHelper.CreateNewDatabase(Environment.CurrentDirectory + "\\TransOptimization\\Misaka_" + gameName + ".sqlite");
             sqlite = new SQLHelper(Environment.CurrentDirectory + "\\TransOptimization\\Misaka_" + gameName + ".sqlite");
             sqlite.ExecuteSql("CREATE TABLE NounTransOpt(source TEXT PRIMARY KEY,src_lang TEXT,type INT,userTrans TEXT,dst_lang TEXT,machineTrans TEXT);");
         }
