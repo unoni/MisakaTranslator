@@ -480,13 +480,13 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Config.Net.Json">
-      <Version>4.14.23</Version>
+      <Version>4.14.24</Version>
     </PackageReference>
     <PackageReference Include="FontAwesome.WPF">
       <Version>4.7.0.9</Version>
     </PackageReference>
     <PackageReference Include="HandyControl">
-      <Version>2.4.0</Version>
+      <Version>2.5.0.2</Version>
     </PackageReference>
     <PackageReference Include="System.Data.SQLite">
       <Version>1.0.112</Version>
