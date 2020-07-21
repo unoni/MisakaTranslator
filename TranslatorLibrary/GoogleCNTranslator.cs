@@ -13,7 +13,7 @@ namespace TranslatorLibrary
     {
         private string errorInfo;//错误信息
 
-        public string GetTkkJS;
+        Jint.Native.JsValue ng; // Jint engine，执行JS代码
 
         public string GetLastError()
         {
@@ -37,9 +37,7 @@ namespace TranslatorLibrary
             if (srcLang == "kr")
                 srcLang = "ko";
 
-            string fun = string.Format(@"TL('{0}')", sourceText);
-
-            var tk = ExecuteScript(fun, GetTkkJS);
+            var tk = ng.Invoke(sourceText);
 
             string googleTransUrl = "http://translate.google.cn/translate_a/single?client=webapp&sl=" + srcLang + "&tl=" + desLang + "&hl=zh-CN&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&dt=t&ie=UTF-8&oe=UTF-8&clearbtn=1&otf=1&pc=1&srcrom=0&ssel=0&tsel=0&kc=2&tk=" + tk + "&q=" + Uri.EscapeDataString(sourceText);
 
@@ -65,7 +63,8 @@ namespace TranslatorLibrary
 
         public void TranslatorInit(string param1 = "", string param2 = "")
         {
-            GetTkkJS = File.ReadAllText($"{Environment.CurrentDirectory}\\lib\\GoogleJS.js");
+            string TkkJS = File.ReadAllText($"{Environment.CurrentDirectory}\\lib\\GoogleJS.js");
+            ng = new Jint.Engine().Execute(TkkJS).GetValue("TL");
         }
 
         /// <summary>
@@ -86,30 +85,5 @@ namespace TranslatorLibrary
             //webRequest.Headers.Add("X-Requested-With:XMLHttpRequest");
             //webRequest.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8";
         }
-
-        /// <summary>
-        /// 执行JS
-        /// </summary>
-        /// <param name="sExpression">参数体</param>
-        /// <param name="sCode">JavaScript代码的字符串</param>
-        /// <returns></returns>
-        private string ExecuteScript(string sExpression, string sCode)
-        {
-            MSScriptControl.ScriptControl scriptControl = new MSScriptControl.ScriptControl();
-            scriptControl.UseSafeSubset = true;
-            scriptControl.Language = "JScript";
-            scriptControl.AddCode(sCode);
-            try
-            {
-                string str = scriptControl.Eval(sExpression).ToString();
-                return str;
-            }
-            catch (Exception ex)
-            {
-                string str = ex.Message;
-            }
-            return null;
-        }
-
     }
 }
