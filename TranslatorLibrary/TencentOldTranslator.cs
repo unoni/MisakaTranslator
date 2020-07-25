@@ -21,14 +21,14 @@ namespace TranslatorLibrary
             return errorInfo;
         }
 
-        public string Translate(string sourceText, string desLang, string srcLang)
+        public async Task<string> TranslateAsync(string sourceText, string desLang, string srcLang)
         {
             if (sourceText == "" || desLang == "" || srcLang == "")
             {
                 errorInfo = "Param Missing";
                 return null;
             }
-            
+
             // 原文
             string q = sourceText;
 

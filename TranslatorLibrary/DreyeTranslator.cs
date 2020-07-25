@@ -54,14 +54,14 @@ namespace TranslatorLibrary
             return errorInfo;
         }
 
-        public string Translate(string sourceText, string desLang, string srcLang)
+        public async Task<string> TranslateAsync(string sourceText, string desLang, string srcLang)
         {
             if (FilePath == "")
             {
                 return null;
             }
 
-            Encoding shiftjis = Encoding.GetEncoding("shift-jis"); 
+            Encoding shiftjis = Encoding.GetEncoding("shift-jis");
             Encoding gbk = Encoding.GetEncoding("gbk");
             Encoding utf8 = Encoding.GetEncoding("utf-8");
             string currentpath = Environment.CurrentDirectory;

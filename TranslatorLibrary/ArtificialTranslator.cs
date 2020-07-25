@@ -69,7 +69,7 @@ namespace TranslatorLibrary
         {
             /*
              * 汉化补丁格式，只支持单个文本文件：
-             * 
+             *
                 <j>
                 原句1
                 <c>
@@ -82,11 +82,11 @@ namespace TranslatorLibrary
                 翻译2第二行（行数不一定要与原句匹配）
                 <j>3
                 原句3 (原句前后可以空行，不会被读取）
-                <c>3 
+                <c>3
                 （句子可以为空，但是原句和翻译句总数必须一致）
                 #如果一行第一个字符是‘#’，则这一行不会被读取
-                
-                
+
+
              */
             if (System.IO.File.Exists(patchPath) == false) {
                 throw new Exception("Patch File is not Exists.");
@@ -146,57 +146,57 @@ namespace TranslatorLibrary
         /*
          * An Approximated Viterbi Algorithm for sparse model
          * Author: jsc723
-         * 
-         * Our problem can be modeled as an HMM and we can apply Viterbi algorithm to decode the best 
-         * match for each timestep. 
+         *
+         * Our problem can be modeled as an HMM and we can apply Viterbi algorithm to decode the best
+         * match for each timestep.
          * Let T[i, t] store the probability at time t that the most likely sequence so far ends at i. (i.e. most likely seq at t = (x_1, x_2, ... , x_t=i)
          * Assume there are K possible sentences (states).
-         * 
+         *
          * We use the following transition model:
          *     P(transition from state i to j) = （1-pTransitionSkip）* v if j == i + 1
          *                                     = pTransitionSkip * v otherwise
          *                                     where （1-pTransitionSkip*v + (K-1)*pTransitionSkip*v = 1
          *     (Assume K >= 2)
          *     So simply use pTransitionSkip and （1-pTransitionSkip） due to normalization
-         *     
-         *     
+         *
+         *
          * Initial probabilities P(i) = 1.0 / K
          *     which is same for all states, so we can use 1.0 due to normalization
-         * 
+         *
          * P(state = i | observation at t) = ComputeSimilarity(jp_text[i], sourceText)
          *     see the implementation below for details
-         * 
-         * A forward step in Viterbi algorithm at time t can be described as 
+         *
+         * A forward step in Viterbi algorithm at time t can be described as
          * for each state i = {1, 2, ..., K} do
          *     T[i, t] <- max(k)(T[i, t-1] * P(transition from state k to i) * P(state = i | observation at t)
-         *     
+         *
          * This requires O(K^2), but our K > 30000, so it will be too slow for our case.
          * So we need to approximate:
          *     We only consider the case when two of {T[i, t-1], P(transition from state k to i), P(state = i | observation at t)} are large.
          *     Let possibleCursors be a list of large T[i, t-1], and sum(possibleCursors) == 0.8
-         *     For each T[i, t-1] in possibleCursors , we consider 
+         *     For each T[i, t-1] in possibleCursors , we consider
          *          t[i, t-1]*P(i to i+1)*P(i+1 | o_t)  [Case 1]
-         *              and 
+         *              and
          *          (
          *              for all k that P(k | o_t) is large: t[i, t-1]*P(i to not i+1)*P(k | o_t)
          *              covered in the next case more efficiently, so skiped
          *          )
-         *     For all k that P(k | o_t) is large: 
+         *     For all k that P(k | o_t) is large:
          *          max(t[*, t-1])*P(i to not i+1)*P(i+1 | o_t)  [Case 2]
          *              and
          *          (
          *              t[k-1, t-1]*P(k-1 to k)*P(k | o_t)
          *              where t[k-1, t-1] == 0.2 / (K - possibleCursors.Count) if k-1 not in possibleCursors
          *                                == possibleCursors[k-1] if k-1 in possibleCursors
-         *              However, in this case, if k-1 is not in possibleCursor, t[k-1, t-1] will be extremely small, and if 
+         *              However, in this case, if k-1 is not in possibleCursor, t[k-1, t-1] will be extremely small, and if
          *              k-1 is in possibleCursor, it is already covered in the previous case. Therefore we can simply skip this case.
          *           )
-         *           
+         *
          * The runtime is now O(MK) where M is the maximum size of possibleCursors and is a constant.
-         * 
+         *
          */
         #endregion
-        public string Translate(string sourceText, string desLang, string srcLang)
+        public async Task<string> TranslateAsync(string sourceText, string desLang, string srcLang)
         {
             //sourceText = addNoise(addNoise2(sourceText)); //The translator is able to find the correct match on hook mode under a high noise
             Console.WriteLine(String.Format("Input:{0}", sourceText));

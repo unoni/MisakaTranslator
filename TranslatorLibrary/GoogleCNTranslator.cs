@@ -20,7 +20,7 @@ namespace TranslatorLibrary
             return errorInfo;
         }
 
-        public string Translate(string sourceText, string desLang, string srcLang)
+        public async Task<string> TranslateAsync(string sourceText, string desLang, string srcLang)
         {
             if (desLang == "zh")
                 desLang = "zh-cn";
@@ -43,7 +43,7 @@ namespace TranslatorLibrary
 
             try
             {
-                var ResultHtml = GetResultHtml(googleTransUrl);
+                var ResultHtml = await GetResultHtml(googleTransUrl);
 
                 JsonElement TempResult = JsonSerializer.Deserialize<JsonElement>(ResultHtml);
 
@@ -74,11 +74,11 @@ namespace TranslatorLibrary
         /// <param name="cc"></param>
         /// <param name="refer"></param>
         /// <returns></returns>
-        public string GetResultHtml(string url)
+        public async Task<string> GetResultHtml(string url)
         {
 
             var hc = CommonFunction.GetHttpClient();
-            return hc.GetStringAsync(url).GetAwaiter().GetResult();
+            return await hc.GetStringAsync(url);
 
             // string usergant = "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36";
             //webRequest.Referer = "https://translate.google.cn/";

@@ -2,6 +2,7 @@
 using System.IO;
 using System.Text;
 using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace TranslatorLibrary
 {
@@ -16,7 +17,7 @@ namespace TranslatorLibrary
             return errorInfo;
         }
 
-        public string Translate(string sourceText, string desLang, string srcLang)
+        public async Task<string> TranslateAsync(string sourceText, string desLang, string srcLang)
         {
             if (sourceText == "" || desLang == "" || srcLang == "")
             {

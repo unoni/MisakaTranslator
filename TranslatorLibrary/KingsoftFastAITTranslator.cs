@@ -108,21 +108,21 @@ namespace TranslatorLibrary
             return errorInfo;
         }
 
-        public string Translate(string sourceText, string desLang, string srcLang)
+        public Task<string> TranslateAsync(string sourceText, string desLang, string srcLang)
         {
             if (FilePath == "" || desLang != "zh")
             {
                 return null;
             }
 
-            
+
             IntPtr buffer = Marshal.AllocHGlobal(buffersize);
             StringBuilder to = new StringBuilder(0x400);
             string path = Environment.CurrentDirectory;
 
             if (srcLang == "en")
             {
-                
+
                 Environment.CurrentDirectory = FilePath + "\\GTS\\EnglishSChinese\\";
 
                 string dicPath = FilePath + "\\GTS\\EnglishSChinese\\" + DEFAULT_DIC;
@@ -175,7 +175,7 @@ namespace TranslatorLibrary
                 return null;
             }
             Environment.CurrentDirectory = path;
-            return to.ToString();
+            return Task.FromResult(to.ToString());
         }
 
         public void TranslatorInit(string param1, string param2 = "")

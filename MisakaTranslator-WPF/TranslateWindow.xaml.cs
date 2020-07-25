@@ -19,6 +19,7 @@ using TranslatorLibrary;
 using TransOptimizationLibrary;
 using TTSHelperLibrary;
 using ArtificialTransHelperLibrary;
+using System.Threading.Tasks;
 
 namespace MisakaTranslator_WPF
 {
@@ -279,7 +280,7 @@ namespace MisakaTranslator_WPF
 
                         if (!string.IsNullOrEmpty(srcText))
                         {
-                            Application.Current.Dispatcher.BeginInvoke((Action)(() =>
+                            Application.Current.Dispatcher.BeginInvoke((Action)(async () =>
                             {
                                 //0.清除面板
                                 SourceTextPanel.Children.Clear();
@@ -305,11 +306,11 @@ namespace MisakaTranslator_WPF
                                 string transRes2 = string.Empty;
                                 if (_translator1 != null)
                                 {
-                                    transRes1 = _translator1.Translate(beforeString, Common.UsingDstLang, Common.UsingSrcLang);
+                                    transRes1 = await _translator1.TranslateAsync(beforeString, Common.UsingDstLang, Common.UsingSrcLang);
                                 }
                                 if (_translator2 != null)
                                 {
-                                    transRes2 = _translator2.Translate(beforeString, Common.UsingDstLang, Common.UsingSrcLang);
+                                    transRes2 = await _translator2.TranslateAsync(beforeString, Common.UsingDstLang, Common.UsingSrcLang);
                                 }
 
                                 //6.翻译后处理
@@ -398,7 +399,7 @@ namespace MisakaTranslator_WPF
         /// </summary>
         public void DataRecvEventHandler(object sender, SolvedDataRecvEventArgs e)
         {
-            Application.Current.Dispatcher.BeginInvoke((Action)(() =>
+            Application.Current.Dispatcher.BeginInvoke((Action)(async () =>
             {
 
                 //1.得到原句
@@ -432,11 +433,11 @@ namespace MisakaTranslator_WPF
                     string transRes2 = string.Empty;
                     if (_translator1 != null)
                     {
-                        transRes1 = _translator1.Translate(beforeString, Common.UsingDstLang, Common.UsingSrcLang);
+                        transRes1 = await _translator1.TranslateAsync(beforeString, Common.UsingDstLang, Common.UsingSrcLang);
                     }
                     if (_translator2 != null)
                     {
-                        transRes2 = _translator2.Translate(beforeString, Common.UsingDstLang, Common.UsingSrcLang);
+                        transRes2 = await _translator2.TranslateAsync(beforeString, Common.UsingDstLang, Common.UsingSrcLang);
                     }
 
                     //6.翻译后处理
@@ -609,7 +610,7 @@ namespace MisakaTranslator_WPF
             dtimer.Start();
         }
 
-        private void RenewOCR_Item_Click(object sender, RoutedEventArgs e)
+        private async void RenewOCR_Item_Click(object sender, RoutedEventArgs e)
         {
             if (Common.transMode == 2)
             {
@@ -633,11 +634,11 @@ namespace MisakaTranslator_WPF
                 string transRes2 = string.Empty;
                 if (_translator1 != null)
                 {
-                    transRes1 = _translator1.Translate(beforeString, Common.UsingDstLang, Common.UsingSrcLang);
+                    transRes1 = await _translator1.TranslateAsync(beforeString, Common.UsingDstLang, Common.UsingSrcLang);
                 }
                 if (_translator2 != null)
                 {
-                    transRes2 = _translator2.Translate(beforeString, Common.UsingDstLang, Common.UsingSrcLang);
+                    transRes2 = await _translator2.TranslateAsync(beforeString, Common.UsingDstLang, Common.UsingSrcLang);
                 }
 
                 //6.翻译后处理
