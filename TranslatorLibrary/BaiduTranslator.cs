@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace TranslatorLibrary
@@ -65,7 +65,7 @@ namespace TranslatorLibrary
                 return null;
             }
 
-            BaiduTransOutInfo oinfo = JsonSerializer.Deserialize<BaiduTransOutInfo>(retString);
+            BaiduTransOutInfo oinfo = JsonConvert.DeserializeObject<BaiduTransOutInfo>(retString);
 
             if (oinfo.error_code == null || oinfo.error_code == "52000")
             {

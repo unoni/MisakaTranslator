@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
-using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Net.Http;
@@ -70,7 +70,7 @@ namespace TranslatorLibrary
             CaiyunTransResult oinfo;
             try
             {
-                oinfo = JsonSerializer.Deserialize<CaiyunTransResult>(retString);
+                oinfo = JsonConvert.DeserializeObject<CaiyunTransResult>(retString);
             }
             catch {
                 errorInfo = "JsonConvert Error";

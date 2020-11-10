@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.IO;
 using System.Text;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace TranslatorLibrary
@@ -62,7 +62,7 @@ namespace TranslatorLibrary
                 return null;
             }
 
-            TencentTransOutInfo oinfo = JsonSerializer.Deserialize<TencentTransOutInfo>(retString);
+            TencentTransOutInfo oinfo = JsonConvert.DeserializeObject<TencentTransOutInfo>(retString);
 
             if (oinfo.ret == "0")
             {

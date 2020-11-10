@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace TranslatorLibrary
@@ -60,7 +60,7 @@ namespace TranslatorLibrary
                 return null;
             }
 
-            YoudaoTransResult oinfo = JsonSerializer.Deserialize<YoudaoTransResult>(retString);
+            YoudaoTransResult oinfo = JsonConvert.DeserializeObject<YoudaoTransResult>(retString);
 
             if (oinfo.errorCode == 0)
             {
