@@ -49,7 +49,7 @@ namespace TranslatorLibrary
             var hc = CommonFunction.GetHttpClient();
             try
             {
-                retString = hc.GetStringAsync(url + req).GetAwaiter().GetResult();
+                retString = await hc.GetStringAsync(url + req);
             }
             catch (System.Net.Http.HttpRequestException ex)
             {

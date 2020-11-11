@@ -50,7 +50,7 @@ namespace TranslatorLibrary
             req.Headers.Add("ContentType", "application/json;charset=UTF-8");
             try
             {
-                retString = hc.PostAsync(url, req).GetAwaiter().GetResult().Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                retString = await (await hc.PostAsync(url, req)).Content.ReadAsStringAsync();
             }
             catch (System.Net.Http.HttpRequestException ex)
             {
