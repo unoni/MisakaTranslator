@@ -6,8 +6,7 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: microsoft/setup-msbuild@v1
-    - run: msbuild -v:m -r
+    - run: dotnet build
     - uses: actions/upload-artifact@v2
       with:
         path: MisakaTranslator-WPF/bin/Debug
