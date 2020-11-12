@@ -17,6 +17,9 @@
     <Content Include="lib\**">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="logo.ico" />
+    <Resource Include="SettingsPages\AboutV2.jpg" />
+    <Resource Include="GuidePages\Completation.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,17 +36,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="logo.ico" />
-    <Resource Include="SettingsPages\AboutV2.jpg" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Config.Net.Json" Version="4.14.24" />
     <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9" />
     <PackageReference Include="HandyControl" Version="2.5.0.2" />
   </ItemGroup>
-
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-
-  </Target>
 </Project>

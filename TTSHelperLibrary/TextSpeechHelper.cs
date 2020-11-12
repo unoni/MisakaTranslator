@@ -12,7 +12,7 @@ namespace TTSHelperLibrary
         dynamic synth;
         public TextSpeechHelper() {
             synth = null;
-            throw new ArgumentNullException();
+            throw new NotImplementedException();
         }
 
         /// <summary>

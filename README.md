@@ -5,19 +5,26 @@
 功能增加：
 
 * .NET5
+* x64
 
 功能缺失：
 
 * TTS
 * Mecab
 * TesseractOCR
-* J北京等32位库（如果用我构建的）
+* J北京等32位库
 * 默认关闭人工翻译且未测试是否可用
 
-构建：
+没有解决：
+
+* 反复打开设置界面会导致内存不断增长
+
+构建（需要装SDK）：
 
 ```cmd
-dotnet publish -c Release -p:RuntimeIdentifier=win10-x64 -p:PublishReadyToRun=true -p:DebugType=none --self-contained=false
+dotnet publish -c Release -r win-x64 -p:PublishReadyToRun=true -p:DebugType=none --self-contained=false
 ```
 
-结果在`MisakaTranslator\MisakaTranslator-WPF\bin\Release\net5.0-windows\win10-x64\publish`中。
+结果在`MisakaTranslator\MisakaTranslator-WPF\bin\Release\net5.0-windows\win-x64\publish`中。
+
+你也可以下载我release的包，但不保证为最新的。运行必须至少装runtime（SDK中已包含）。

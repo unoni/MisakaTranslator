@@ -74,12 +74,12 @@ namespace MisakaTranslator_WPF
 
 
 
-            _textSpeechHelper = new TextSpeechHelper();
             if (Common.appSettings.ttsVoice == "")
             {
                 Growl.InfoGlobal(Application.Current.Resources["TranslateWin_NoTTS_Hint"].ToString());
             }
             else {
+                _textSpeechHelper = new TextSpeechHelper();
                 _textSpeechHelper.SetTTSVoice(Common.appSettings.ttsVoice);
                 _textSpeechHelper.SetVolume(Common.appSettings.ttsVolume);
                 _textSpeechHelper.SetRate(Common.appSettings.ttsRate);
