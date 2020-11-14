@@ -10,7 +10,7 @@
                Background="{DynamicResource TranslateWindowBackground}"
                AllowsTransparency="True"
                WindowStyle="None"
-        Title="TranslateWindow" Height="450" Width="800" Closing="Window_Closing" Loaded="TransWin_Loaded" FontFamily="微软雅黑">
+        Title="TranslateWindow" Height="450" Width="800" Closing="Window_Closing" Loaded="TransWin_Loaded" FontFamily="微软雅黑" Topmost="True">
     <WindowChrome.WindowChrome> 
         <WindowChrome CaptionHeight="0"/>
     </WindowChrome.WindowChrome>
