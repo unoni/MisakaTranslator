@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MisakaTranslator_WPF"
         mc:Ignorable="d"
-        Title="{StaticResource ArtificialTransWin_Title}" Height="400" Width="600">
+        Title="{StaticResource ArtificialTransWin_Title}" Height="400" Width="600" FontFamily="微软雅黑">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>

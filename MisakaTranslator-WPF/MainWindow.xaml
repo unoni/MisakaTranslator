@@ -11,7 +11,8 @@
         ShowTitle="True"
         Height="540" 
         Width="960" Closing="BlurWindow_Closing"
-               ContentRendered="BlurWindow_ContentRendered">
+               ContentRendered="BlurWindow_ContentRendered"
+               FontFamily="微软雅黑">
     <Window.Resources>
         <ResourceDictionary Source = "Appearance.xaml"/>
     </Window.Resources>

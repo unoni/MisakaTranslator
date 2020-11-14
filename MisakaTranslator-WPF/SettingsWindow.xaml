@@ -6,7 +6,7 @@
         xmlns:hc="https://handyorg.github.io/handycontrol"
         xmlns:local="clr-namespace:MisakaTranslator_WPF"
         mc:Ignorable="d"
-        Title="{StaticResource SettingsMenu_WinName}" Height="476" MinHeight="476" Width="800" MinWidth="800">
+        Title="{StaticResource SettingsMenu_WinName}" Height="476" MinHeight="476" Width="800" MinWidth="800" FontFamily="微软雅黑">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>

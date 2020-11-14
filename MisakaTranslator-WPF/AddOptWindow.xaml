@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MisakaTranslator_WPF"
         mc:Ignorable="d"
-        Title="AddOptWindow" Height="300" Width="500">
+        Title="AddOptWindow" Height="300" Width="500" FontFamily="微软雅黑">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
