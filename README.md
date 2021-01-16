@@ -24,7 +24,7 @@
 构建（需要装SDK）：
 
 ```cmd
-dotnet publish -c Release -r win-x64 -p:PublishReadyToRun=true -p:DebugType=none --self-contained=false
+dotnet publish -c Release -r win10-x64 -p:PublishReadyToRun=true -p:DebugType=none --self-contained=false
 ```
 
 结果在`MisakaTranslator\MisakaTranslator-WPF\bin\Release\net5.0-windows\win-x64\publish`中。

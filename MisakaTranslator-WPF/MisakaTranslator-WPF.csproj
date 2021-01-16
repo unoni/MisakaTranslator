@@ -38,7 +38,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Config.Net.Json" Version="4.14.24" />
+    <PackageReference Include="Config.Net.Json" Version="4.14.*" />
     <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9" />
     <PackageReference Include="HandyControl" Version="2.5.0.2" />
   </ItemGroup>
