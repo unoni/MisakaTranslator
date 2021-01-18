@@ -7,7 +7,7 @@
       xmlns:local="clr-namespace:MisakaTranslator_WPF.SettingsPages.TranslatorPages"
       mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="594"
-      Title="DreyeTransSettingsPage">
+      Title="DreyeTransSettingsPage" FontFamily="微软雅黑">
 
     <Grid>
         <hc:ScrollViewer HorizontalScrollBarVisibility="Disabled">

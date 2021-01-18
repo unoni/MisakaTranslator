@@ -7,7 +7,7 @@
       xmlns:local="clr-namespace:MisakaTranslator_WPF.GuidePages.Hook"
       mc:Ignorable="d"
       d:DesignHeight="400" d:DesignWidth="800"
-      Title="ChooseTextRepairFuncPage">
+      Title="ChooseTextRepairFuncPage" FontFamily="微软雅黑">
 
     <Grid>
         <Grid>

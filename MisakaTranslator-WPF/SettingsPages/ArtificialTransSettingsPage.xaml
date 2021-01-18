@@ -7,7 +7,7 @@
       xmlns:local="clr-namespace:MisakaTranslator_WPF.SettingsPages"
       mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="594"
-      Title="ArtificialTransSettingsPage">
+      Title="ArtificialTransSettingsPage" FontFamily="微软雅黑">
 
     <Grid>
         <Grid>
