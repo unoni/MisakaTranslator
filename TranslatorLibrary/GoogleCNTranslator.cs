@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json;
 
 namespace TranslatorLibrary
 {
@@ -44,23 +45,30 @@ namespace TranslatorLibrary
             {
                 var ResultHtml = await GetResultHtml(googleTransUrl);
 
-                dynamic TempResult = Newtonsoft.Json.JsonConvert.DeserializeObject(ResultHtml);
+                using var doc = JsonDocument.Parse(ResultHtml);
 
-                string ResultText = "";
+                var TempResult = doc.RootElement;
 
-                if (TempResult != null)
-                {
+                if(TempResult.GetArrayLength() > 0)
+                    return string.Join("", TempResult[0].EnumerateArray().Select(x => x[0]));
+                else
+                    return "";
 
-                    for (int i = 0; i < TempResult[0].Count; i++)
-                    {
-                        if (TempResult[0][i] != null)
-                        {
-                            ResultText += TempResult[0][i][0];
-                        }
-                    }
-                }
+                // string ResultText = "";
 
-                return ResultText;
+                // if (TempResult != null)
+                // {
+
+                //     for (int i = 0; i < TempResult[0].Count; i++)
+                //     {
+                //         if (TempResult[0][i] != null)
+                //         {
+                //             ResultText += TempResult[0][i][0];
+                //         }
+                //     }
+                // }
+
+                // return ResultText;
             }
             catch (System.Net.Http.HttpRequestException ex)
             {

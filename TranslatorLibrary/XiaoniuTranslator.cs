@@ -1,9 +1,9 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json;
 
 namespace TranslatorLibrary
 {
@@ -57,7 +57,7 @@ namespace TranslatorLibrary
                 return null;
             }
 
-            XiaoniuTransOutInfo oinfo = JsonConvert.DeserializeObject<XiaoniuTransOutInfo>(retString);
+            XiaoniuTransOutInfo oinfo = JsonSerializer.Deserialize<XiaoniuTransOutInfo>(retString);
 
             if (oinfo.error_code == null || oinfo.error_code == "52000")
             {
