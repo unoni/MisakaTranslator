@@ -4,7 +4,7 @@
 
 功能增加：
 
-* .NET5
+* .NET6
 * x64
 
 功能缺失：
@@ -25,7 +25,7 @@
 构建（需要装SDK）：
 
 ```cmd
-dotnet publish -c Release -r win10-x64 -p:PublishReadyToRun=true -p:DebugType=none --self-contained=false
+dotnet publish -c Release -r win10-x64 -p:PublishReadyToRun=true -p:PublishReadyToRunUseCrossgen2=true -p:DebugType=none --self-contained=false
 ```
 
 结果在`MisakaTranslator\MisakaTranslator-WPF\bin\Release\net5.0-windows\win10-x64\publish`中。
