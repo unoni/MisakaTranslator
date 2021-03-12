@@ -28,6 +28,6 @@
 dotnet publish -c Release -r win10-x64 -p:PublishReadyToRun=true -p:PublishReadyToRunUseCrossgen2=true -p:DebugType=none --self-contained=false
 ```
 
-结果在`MisakaTranslator\MisakaTranslator-WPF\bin\Release\net5.0-windows\win10-x64\publish`中。
+结果在`MisakaTranslator\MisakaTranslator-WPF\bin\Release\net6.0-windows\win10-x64\publish`中。
 
 你也可以下载我release的包，但不保证为最新的；运行必须装好.NET Desktop Runtime（SDK中已包含）。
