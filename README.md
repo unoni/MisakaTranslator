@@ -21,6 +21,8 @@
 
 * 反复打开设置界面会导致内存不断增长
 * 最小翻译间隔（防抖）
+* Process.Start时Core的UseShellExecute默认为False，导致运行URL失败。点击申请API按钮会用到，懒得改
+* OCR和DPI有关的问题。我不用OCR
 
 构建（需要装SDK）：
 
