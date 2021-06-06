@@ -4,8 +4,4 @@
     <OutputType>Library</OutputType>
     <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Jint" Version="2.11.58" />
-  </ItemGroup>
 </Project>
