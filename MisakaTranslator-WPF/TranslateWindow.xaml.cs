@@ -311,10 +311,14 @@ namespace MisakaTranslator_WPF
                                 if (_translator1 != null)
                                 {
                                     transRes1 = await _translator1.TranslateAsync(beforeString, Common.UsingDstLang, Common.UsingSrcLang);
+                                    if(transRes1 == null)
+                                        Growl.ErrorGlobal(_translator1.GetType().Name + ": " + _translator1.GetLastError());
                                 }
                                 if (_translator2 != null)
                                 {
                                     transRes2 = await _translator2.TranslateAsync(beforeString, Common.UsingDstLang, Common.UsingSrcLang);
+                                    if(transRes2 == null)
+                                       Growl.ErrorGlobal(_translator1.GetType().Name + ": " + _translator1.GetLastError());
                                 }
 
                                 //6.翻译后处理
@@ -440,10 +444,14 @@ namespace MisakaTranslator_WPF
                     if (_translator1 != null)
                     {
                         transRes1 = await _translator1.TranslateAsync(beforeString, Common.UsingDstLang, Common.UsingSrcLang);
+                        if(transRes1 == null)
+                            Growl.ErrorGlobal(_translator1.GetType().Name + ": " + _translator1.GetLastError());
                     }
                     if (_translator2 != null)
                     {
                         transRes2 = await _translator2.TranslateAsync(beforeString, Common.UsingDstLang, Common.UsingSrcLang);
+                        if(transRes2 == null)
+                            Growl.ErrorGlobal(_translator2.GetType().Name + ": " + _translator2.GetLastError());
                     }
 
                     //6.翻译后处理
