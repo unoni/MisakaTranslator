@@ -33,6 +33,8 @@ namespace TranslatorLibrary
             if(desLang != "en" && srcLang != "en")
             {
                 sourceText = await TranslateAsync(sourceText, "en", srcLang);
+                if (sourceText == null)
+                    return null;
                 srcLang = "en";                                   
             }
 
@@ -69,8 +71,9 @@ namespace TranslatorLibrary
                 return null;
             }
 
-            var listoftranslation = doc.RootElement.GetProperty("translations").EnumerateArray();
-            return string.Join("\n", listoftranslation.Select(x => x.GetProperty("translation").GetString()));
+            return doc.RootElement.GetProperty("translations")[0].GetProperty("translation").GetString();
+            // var listoftranslation = doc.RootElement.GetProperty("translations").EnumerateArray();
+            // return string.Join("\n", listoftranslation.Select(x => x.GetProperty("translation").GetString()));
         }
 
         public void TranslatorInit(string param1, string param2)
